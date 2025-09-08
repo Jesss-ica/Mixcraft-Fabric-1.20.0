@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "#": {
+      "item": "minecraft:glass"
+    },
+    "T": {
+      "item": "minecraft:torch"
+    },
+    "B": {
+      "item": "minecraft:polished_deepslate"
+    }
+  },
+  "pattern": [
+    "###",
+    "BTB"
+  ],
+
+  "result": {
+    "count" : "4",
+    "id": "mixcraft:alcohol_display"
+  }
+}

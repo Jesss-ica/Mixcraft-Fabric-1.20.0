@@ -1,0 +1,39 @@
+{
+	"schemaVersion": 1,
+	"id": "mixcraft",
+	"version": "${version}",
+	"name": "MixCraft",
+	"description": "Desc",
+	"authors": [
+		"JessicaDiamond"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "MIT",
+	"icon": "assets/mixcraft/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"net.jessicadiamond.mixcraft.MixCraft"
+		],"client": [
+        "net.jessicadiamond.mixcraft.MixCraftClient"
+        ],
+		"fabric-datagen": [
+			"net.jessicadiamond.mixcraft.MixCraftDataGenerator"
+		]
+	},
+	"mixins": [
+		"mixcraft.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.17.2",
+		"minecraft": "~1.21",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}

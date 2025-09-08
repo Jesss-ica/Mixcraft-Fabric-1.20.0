@@ -1,0 +1,12 @@
+{
+  "item.mixcraft.test_item" : "Test Item",
+  "item.mixcraft.test_block" : "Test Block",
+
+  "itemgroup.test_item": "Mixcraft",
+
+  "item.mixcraft.molotov" : "Molotov Cocktail",
+  "entity.mixcraft.molotov" : "molotov",
+  "item.mixcraft.vodka" : "vodka",
+
+  "item.mixcraft.alcohol_display" : "Alcohol Display"
+}
