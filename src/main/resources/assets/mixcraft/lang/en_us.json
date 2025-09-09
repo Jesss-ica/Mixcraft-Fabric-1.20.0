@@ -8,5 +8,5 @@
   "entity.mixcraft.molotov" : "molotov",
   "item.mixcraft.vodka" : "vodka",
 
-  "item.mixcraft.alcohol_display" : "Alcohol Display"
+  "block.mixcraft.alcohol_display" : "Alcohol Display"
 }

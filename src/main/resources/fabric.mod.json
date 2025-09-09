@@ -18,7 +18,7 @@
 		"main": [
 			"net.jessicadiamond.mixcraft.MixCraft"
 		],"client": [
-        "net.jessicadiamond.mixcraft.MixCraftClient"
+          "net.jessicadiamond.mixcraft.MixCraftClient"
         ],
 		"fabric-datagen": [
 			"net.jessicadiamond.mixcraft.MixCraftDataGenerator"

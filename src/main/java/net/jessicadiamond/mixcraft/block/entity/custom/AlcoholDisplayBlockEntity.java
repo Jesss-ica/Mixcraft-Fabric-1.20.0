@@ -5,6 +5,7 @@ import net.jessicadiamond.mixcraft.block.entity.ImplementedInventory;
 import net.jessicadiamond.mixcraft.block.entity.ModBlockEntities;
 import net.jessicadiamond.mixcraft.screen.custom.AlcoholDisplayScreenHandler;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.HorizontalFacingBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
@@ -19,12 +20,16 @@ import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import org.jetbrains.annotations.Nullable;
 
 public class AlcoholDisplayBlockEntity extends BlockEntity implements ImplementedInventory, ExtendedScreenHandlerFactory<BlockPos> {
+
+    public DirectionProperty FACING = HorizontalFacingBlock.FACING;
 
     public final int MAX_SIZE = 4;
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(4, ItemStack.EMPTY);
@@ -38,6 +43,23 @@ public class AlcoholDisplayBlockEntity extends BlockEntity implements Implemente
     public DefaultedList<ItemStack> getItems() {
         return inventory;
     }
+
+    public float getFacingRotation(){
+        switch ((Direction)getCachedState().get(FACING)) {
+            case NORTH:
+                return 0f;
+            case SOUTH:
+                return 180f;
+            case EAST:
+                return 270f;
+            case WEST:
+                return 90f;
+            default:
+                return 0f;
+        }
+    }
+
+
 
     public float getRenderingRotation() {
         rotation += 0.5f;
