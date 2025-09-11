@@ -1,0 +1,16 @@
+{
+  "type": "mixcraft:fermentation_table",
+  "ingredient": {
+    "item": "minecraft:potato"
+  },
+  "bottle": {
+    "item": "minecraft:potion"
+  },
+  "fuel": {
+    "item": "coal"
+  },
+  "result":{
+    "count" : 1,
+    "id" : "mixcraft:vodka"
+  }
+}

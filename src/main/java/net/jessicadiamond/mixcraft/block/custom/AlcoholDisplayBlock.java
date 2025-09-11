@@ -30,7 +30,9 @@ import javax.swing.*;
 import java.util.List;
 
 public class AlcoholDisplayBlock extends BlockWithEntity{
+
     public static final MapCodec<AlcoholDisplayBlock> CODEC = AlcoholDisplayBlock.createCodec(AlcoholDisplayBlock::new);
+
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
     // ======== Different Collider Shapes
     private static final VoxelShape BASE_SHAPE =

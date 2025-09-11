@@ -6,7 +6,7 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 
 public class ModFoodComponents {
-    public static final FoodComponent VODKA = new FoodComponent.Builder()
+    public static final FoodComponent ALCOHOL = new FoodComponent.Builder()
             .alwaysEdible()
             .statusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 200), 1f)
             .build();

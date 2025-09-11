@@ -7,6 +7,7 @@ import net.jessicadiamond.mixcraft.block.entity.ModBlockEntities;
 import net.jessicadiamond.mixcraft.entity.ModEntities;
 import net.jessicadiamond.mixcraft.item.ModItemGroups;
 import net.jessicadiamond.mixcraft.item.ModItems;
+import net.jessicadiamond.mixcraft.recipe.ModRecipes;
 import net.jessicadiamond.mixcraft.screen.ModScreenHandlers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +24,7 @@ public class MixCraft implements ModInitializer {
         ModEntities.registerModEntities();
         ModBlockEntities.registerBlockEntities();
         ModScreenHandlers.registerScreenHandlers();
+        ModRecipes.registerRecipes();
 
         LOGGER.info("Hello Fabric world!");
 	}

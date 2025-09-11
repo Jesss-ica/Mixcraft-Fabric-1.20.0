@@ -3,6 +3,7 @@ package net.jessicadiamond.mixcraft.block;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.jessicadiamond.mixcraft.MixCraft;
 import net.jessicadiamond.mixcraft.block.custom.AlcoholDisplayBlock;
+import net.jessicadiamond.mixcraft.block.custom.FermentationTableBlock;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -28,6 +29,11 @@ public class ModBlocks {
     public static final Block ALCOHOL_DISPLAY = registerBlock(
             "alcohol_display",
             new AlcoholDisplayBlock(AbstractBlock.Settings.create().nonOpaque().luminance(state -> 10)));
+
+    public static final Block FERMENTATION_TABLE = registerBlock(
+            "fermentation_table",
+            new FermentationTableBlock(AbstractBlock.Settings.create())
+    );
 
 
     private static Block registerBlock(String name, Block block) {

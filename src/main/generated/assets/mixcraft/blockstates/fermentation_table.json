@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "mixcraft:block/fermentation_table"
+    }
+  }
+}

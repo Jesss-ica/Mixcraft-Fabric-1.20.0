@@ -1,0 +1,13 @@
+{
+  "type": "mixcraft:fermentation_table",
+  "ingredient": {
+    "item": "minecraft:wheat"
+  },
+  "bottle": {
+    "item": "minecraft:potion"
+  },
+  "result":{
+    "count" : 1,
+    "id" : "mixcraft:beer"
+  }
+}

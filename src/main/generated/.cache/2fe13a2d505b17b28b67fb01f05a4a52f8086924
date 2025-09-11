@@ -1,7 +1,12 @@
-// 1.21	2025-09-07T12:21:35.3073133	MixCraft/Model Definitions
+// 1.21	2025-09-10T21:02:27.2668668	MixCraft/Model Definitions
 4575043026fdd54eecae0db768196d96ce9be086 assets\mixcraft\models\item\test_block.json
+eb5b144e1009e5d8292b475ba0c49ea39cccdcbf assets\mixcraft\models\block\fermentation_table.json
 1d9bf8e292a70bc6a706b62739c84d19e9f6f5a0 assets\mixcraft\models\item\vodka.json
 b565469ec3a890a7710bffbce2cc43ab5672918c assets\mixcraft\models\item\test_item.json
+3ca355c82fdaab8b63a733333947cfd86e6b2e3e assets\mixcraft\models\item\beer.json
 115f502082eb80260f30ee27073d0f98eebf4b5c assets\mixcraft\models\block\test_block.json
+17b389ce5ba424dcee1508318f288f4da16e5194 assets\mixcraft\models\item\whisky.json
 3623e86160a68c732c36d00027a4c6058c403410 assets\mixcraft\blockstates\test_block.json
+849f02dc86680c38a4a2d8fb17d516924c5b7bce assets\mixcraft\blockstates\fermentation_table.json
 5b9804e9f816823337f4c2ec2eefc4d04aca5995 assets\mixcraft\models\item\molotov.json
+4b8515226307b7dde3e9abd7ad2e034f0a51cab2 assets\mixcraft\models\item\fermentation_table.json

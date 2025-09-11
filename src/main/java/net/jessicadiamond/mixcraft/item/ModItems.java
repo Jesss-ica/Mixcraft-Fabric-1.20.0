@@ -21,7 +21,10 @@ public class ModItems {
 
     public static final Item MOLOTOV = registerItem("molotov", new MolotovItem(new Item.Settings().maxCount(16)));
 
-    public static final Item VODKA = registerItem("vodka", new Item(new Item.Settings().food(ModFoodComponents.VODKA)));
+    public static final Item VODKA = registerItem("vodka", new Item(new Item.Settings().food(ModFoodComponents.ALCOHOL)));
+    public static final Item WHISKY = registerItem("whisky", new Item(new Item.Settings().food(ModFoodComponents.ALCOHOL)));
+    public static final Item BEER = registerItem("beer", new Item(new Item.Settings().food(ModFoodComponents.ALCOHOL)));
+
 
 
     private static Item registerItem(String name, Item item) {

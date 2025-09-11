@@ -25,6 +25,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
 
     @Override
     public void generate() {
+        addDrop(ModBlocks.FERMENTATION_TABLE);
         addDrop(ModBlocks.ALCOHOL_DISPLAY);
         addDrop(ModBlocks.TEST_BLOCK);
     }

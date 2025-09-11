@@ -20,9 +20,12 @@ public class ModItemGroups {
                         entries.add(ModBlocks.TEST_BLOCK);
 
                         entries.add(ModBlocks.ALCOHOL_DISPLAY);
+                        entries.add(ModBlocks.FERMENTATION_TABLE);
 
                         entries.add(ModItems.VODKA);
                         entries.add(ModItems.MOLOTOV);
+                        entries.add(ModItems.WHISKY);
+                        entries.add(ModItems.BEER);
 
 
                     }).build());
