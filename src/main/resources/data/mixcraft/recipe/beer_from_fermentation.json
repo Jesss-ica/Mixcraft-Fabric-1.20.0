@@ -1,5 +1,8 @@
 {
   "type": "mixcraft:fermentation_table",
+  "fuel":{
+    "item": ""
+  },
   "ingredient": {
     "item": "minecraft:wheat"
   },

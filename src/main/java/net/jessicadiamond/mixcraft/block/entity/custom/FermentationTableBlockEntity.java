@@ -1,6 +1,7 @@
 package net.jessicadiamond.mixcraft.block.entity.custom;
 
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
+import net.jessicadiamond.mixcraft.MixCraft;
 import net.jessicadiamond.mixcraft.block.ModBlocks;
 import net.jessicadiamond.mixcraft.block.entity.ImplementedInventory;
 import net.jessicadiamond.mixcraft.block.entity.ModBlockEntities;
@@ -132,7 +133,7 @@ public class FermentationTableBlockEntity extends BlockEntity implements Extende
     private void craftItem() {
         Optional<RecipeEntry<FermentationTableRecipe>> recipe = getCurrentRecipe();
 
-        ItemStack output = recipe.get().value().output();
+        ItemStack output = recipe.get().value().output;
         this.setStack(OUTPUT_SLOT, new ItemStack(output.getItem(),
                 this.getStack(OUTPUT_SLOT).getCount() + output.getCount()));
 
@@ -151,18 +152,21 @@ public class FermentationTableBlockEntity extends BlockEntity implements Extende
             return false;
         }
 
-        ItemStack output = recipe.get().value().output();
+        MixCraft.LOGGER.info(recipe.get().value().output.toString());
+
+        ItemStack output = recipe.get().value().output;
 
         return canInsertAmountIntoOutputSlot(output.getCount()) &&
                 canInsertItemIntoOutputSlot(output);
     }
 
     private Optional<RecipeEntry<FermentationTableRecipe>> getCurrentRecipe() {
+
         return this.getWorld().getRecipeManager()
                 .getFirstMatch(ModRecipes.FERMENTATION_TABLE_TYPE, new FermentationTableRecipeInput(
-                        inventory.get(ITEM_SLOT),
-                        inventory.get(BOTTLE_SLOT),
-                        inventory.get(FUEL_SLOT)),
+                                inventory.get(ITEM_SLOT),
+                                inventory.get(BOTTLE_SLOT),
+                                inventory.get(FUEL_SLOT)),
                         this.getWorld());
     }
 

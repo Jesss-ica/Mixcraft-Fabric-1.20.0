@@ -2,9 +2,32 @@ package net.jessicadiamond.mixcraft.recipe;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.recipe.input.CraftingRecipeInput;
 import net.minecraft.recipe.input.RecipeInput;
+import net.minecraft.util.Identifier;
 
-public record FermentationTableRecipeInput(ItemStack item, ItemStack bottle, ItemStack fuel) implements RecipeInput {
+import java.util.List;
+
+public class FermentationTableRecipeInput implements RecipeInput {
+
+
+    public static final FermentationTableRecipeInput EMPTY = new FermentationTableRecipeInput(ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY);
+
+    public final ItemStack item;
+    public final ItemStack bottle;
+    public final ItemStack fuel;
+
+    public FermentationTableRecipeInput(ItemStack item, ItemStack bottle, ItemStack fuel){
+        this.item = item;
+        this.bottle = bottle;
+        this.fuel = fuel;
+    }
+
+    public FermentationTableRecipeInput(ItemStack item, ItemStack bottle){
+        this.item = item;
+        this.bottle = bottle;
+        this.fuel = ItemStack.EMPTY;
+    }
 
     @Override
     public ItemStack getStackInSlot(int slot) {
