@@ -30,11 +30,11 @@ public class FermentationTableScreenHandler extends ScreenHandler {
         this.blockEntity = ((FermentationTableBlockEntity) blockEntity);
         this.propertyDelegate = arrayPropertyDelegate;
 
-        this.addSlot(new Slot(inventory, 0, 36, 16));
-        this.addSlot(new Slot(inventory, 1, 54, 16));
-        this.addSlot(new Slot(inventory, 2, 36, 52));
+        this.addSlot(new Slot(inventory, 0, 44, 16));
+        this.addSlot(new Slot(inventory, 1, 62, 16));
+        this.addSlot(new Slot(inventory, 2, 44, 52));
 
-        this.addSlot(new Slot(inventory, 3, 104, 34));
+        this.addSlot(new Slot(inventory, 3, 112, 34));
 
         addPlayerInventory(playerInventory);
         addPlayerHotbar(playerInventory);
@@ -44,6 +44,10 @@ public class FermentationTableScreenHandler extends ScreenHandler {
 
     public boolean isCrafting() {
         return propertyDelegate.get(0) > 0;
+    }
+
+    public boolean isDistilling(){
+        return !this.blockEntity.getStack(2).isEmpty() && isCrafting();
     }
 
     public int getScaledArrowProgress() {

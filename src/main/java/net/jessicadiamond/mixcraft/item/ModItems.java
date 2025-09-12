@@ -3,6 +3,7 @@ package net.jessicadiamond.mixcraft.item;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.jessicadiamond.mixcraft.MixCraft;
+import net.jessicadiamond.mixcraft.item.custom.AbstractAlcohol;
 import net.jessicadiamond.mixcraft.item.custom.MolotovItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
@@ -21,7 +22,9 @@ public class ModItems {
 
     public static final Item MOLOTOV = registerItem("molotov", new MolotovItem(new Item.Settings().maxCount(16)));
 
-    public static final Item VODKA = registerItem("vodka", new Item(new Item.Settings().food(ModFoodComponents.ALCOHOL)));
+    public static final Item VODKA = registerItem("vodka", new AbstractAlcohol(
+            new Item.Settings().food(ModFoodComponents.ALCOHOL).maxCount(1),
+            new AbstractAlcohol.Settings()));
     public static final Item WHISKY = registerItem("whisky", new Item(new Item.Settings().food(ModFoodComponents.ALCOHOL)));
     public static final Item BEER = registerItem("beer", new Item(new Item.Settings().food(ModFoodComponents.ALCOHOL)));
 

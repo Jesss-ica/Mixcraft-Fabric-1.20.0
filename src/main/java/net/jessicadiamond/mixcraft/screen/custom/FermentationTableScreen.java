@@ -15,6 +15,9 @@ public class FermentationTableScreen extends HandledScreen<FermentationTableScre
             Identifier.of(MixCraft.MOD_ID, "textures/gui/fermentation_table/fermentation_table_gui.png");
     private static final Identifier ARROW_TEXTURE =
             Identifier.of(MixCraft.MOD_ID, "textures/gui/arrow_progress.png");
+    private static final Identifier DISTILLING_BAR_TEXTURE =
+            Identifier.of(MixCraft.MOD_ID, "textures/gui/distilling_bar_progress.png");
+
 
     public FermentationTableScreen(FermentationTableScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
@@ -32,12 +35,20 @@ public class FermentationTableScreen extends HandledScreen<FermentationTableScre
         context.drawTexture(GUI_TEXTURE, x, y, 0, 0, backgroundWidth, backgroundHeight);
 
         renderProgressArrow(context, x, y);
+        renderDistillationBar(context, x, y);
     }
 
     private void renderProgressArrow(DrawContext context, int x, int y) {
         if(handler.isCrafting()) {
-            context.drawTexture(ARROW_TEXTURE, x + 73, y + 35, 0, 0,
-                    handler.getScaledArrowProgress(), 16, 24, 16);
+            context.drawTexture(ARROW_TEXTURE, x + 81, y + 34, 0, 0,
+                    handler.getScaledArrowProgress(), 17, 24, 17);
+        }
+    }
+
+    private void renderDistillationBar(DrawContext context, int x, int y) {
+        if(handler.isDistilling()) {
+            context.drawTexture(DISTILLING_BAR_TEXTURE, x + 43, y + 37, 0, 0,
+                    36, 11, 36, 11);
         }
     }
 

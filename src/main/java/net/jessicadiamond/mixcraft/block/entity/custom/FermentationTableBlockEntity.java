@@ -2,23 +2,18 @@ package net.jessicadiamond.mixcraft.block.entity.custom;
 
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.jessicadiamond.mixcraft.MixCraft;
-import net.jessicadiamond.mixcraft.block.ModBlocks;
 import net.jessicadiamond.mixcraft.block.entity.ImplementedInventory;
 import net.jessicadiamond.mixcraft.block.entity.ModBlockEntities;
-import net.jessicadiamond.mixcraft.item.ModItems;
 import net.jessicadiamond.mixcraft.recipe.FermentationTableRecipe;
 import net.jessicadiamond.mixcraft.recipe.FermentationTableRecipeInput;
 import net.jessicadiamond.mixcraft.recipe.ModRecipes;
 import net.jessicadiamond.mixcraft.screen.custom.FermentationTableScreenHandler;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
@@ -47,7 +42,9 @@ public class FermentationTableBlockEntity extends BlockEntity implements Extende
 
     protected PropertyDelegate propertyDelegate;
     private int progress = 0;
-    private int maxProgress = 72;
+    private int maxProgress = 110;
+
+    private Optional<RecipeEntry<FermentationTableRecipe>> previousRecipe;
 
     public FermentationTableBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.FERMENTATION_TABLE_BE, pos, state);
@@ -161,7 +158,6 @@ public class FermentationTableBlockEntity extends BlockEntity implements Extende
     }
 
     private Optional<RecipeEntry<FermentationTableRecipe>> getCurrentRecipe() {
-
         return this.getWorld().getRecipeManager()
                 .getFirstMatch(ModRecipes.FERMENTATION_TABLE_TYPE, new FermentationTableRecipeInput(
                                 inventory.get(ITEM_SLOT),

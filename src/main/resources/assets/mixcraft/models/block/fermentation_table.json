@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "mixcraft:block/fermentation_table_bottom",
+    "east": "mixcraft:block/fermentation_table_side",
+    "north": "mixcraft:block/fermentation_table_front",
+    "particle": "mixcraft:block/fermentation_table_side",
+    "south": "mixcraft:block/fermentation_table_side",
+    "up": "mixcraft:block/fermentation_table_top",
+    "west": "mixcraft:block/fermentation_table_side"
+  }
+}
