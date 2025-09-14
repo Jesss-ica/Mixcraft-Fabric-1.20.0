@@ -21,6 +21,7 @@ public class ModItemGroups {
 
                         entries.add(ModBlocks.ALCOHOL_DISPLAY);
                         entries.add(ModBlocks.FERMENTATION_TABLE);
+                        entries.add(ModBlocks.COCKTAIL_BLOCK);
 
                         entries.add(ModItems.VODKA);
                         entries.add(ModItems.MOLOTOV);

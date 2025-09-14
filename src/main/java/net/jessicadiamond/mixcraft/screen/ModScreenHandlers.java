@@ -3,6 +3,7 @@ package net.jessicadiamond.mixcraft.screen;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType;
 import net.jessicadiamond.mixcraft.MixCraft;
 import net.jessicadiamond.mixcraft.screen.custom.AlcoholDisplayScreenHandler;
+import net.jessicadiamond.mixcraft.screen.custom.CocktailBlockScreenHandler;
 import net.jessicadiamond.mixcraft.screen.custom.FermentationTableScreenHandler;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -19,6 +20,10 @@ public class ModScreenHandlers  {
     public static final ScreenHandlerType<FermentationTableScreenHandler> FERMENTATION_TABLE_SCREEN_HANDLER =
             Registry.register(Registries.SCREEN_HANDLER, Identifier.of(MixCraft.MOD_ID, "fermentation_screen_handler"),
                     new ExtendedScreenHandlerType<>(FermentationTableScreenHandler::new, BlockPos.PACKET_CODEC));
+
+    public static final ScreenHandlerType<CocktailBlockScreenHandler> COCKTAIL_BLOCK_SCREEN_HANDLER =
+            Registry.register(Registries.SCREEN_HANDLER, Identifier.of(MixCraft.MOD_ID, "cocktail_block_screen_handler"),
+                    new ExtendedScreenHandlerType<>(CocktailBlockScreenHandler::new, BlockPos.PACKET_CODEC));
 
     public static void registerScreenHandlers(){
         MixCraft.LOGGER.info("Registering Screen Handlers for " + MixCraft.MOD_ID);

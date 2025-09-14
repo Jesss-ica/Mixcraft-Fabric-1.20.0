@@ -26,7 +26,7 @@ public class FermentationTableScreen extends HandledScreen<FermentationTableScre
     @Override
     protected void drawBackground(DrawContext context, float delta, int mouseX, int mouseY) {
         RenderSystem.setShader(GameRenderer::getPositionTexProgram);
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+        RenderSystem.setShaderColor(50.0F, 1.0F, 50.0F, 1.0F);
         RenderSystem.setShaderTexture(0, GUI_TEXTURE);
 
         int x = (width - backgroundWidth) / 2;

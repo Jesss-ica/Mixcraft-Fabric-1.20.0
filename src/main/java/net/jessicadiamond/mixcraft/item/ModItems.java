@@ -1,8 +1,11 @@
 package net.jessicadiamond.mixcraft.item;
 
+import net.fabricmc.fabric.api.item.v1.CustomDamageHandler;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.jessicadiamond.mixcraft.MixCraft;
+import net.jessicadiamond.mixcraft.components.AlcoholComponent;
+import net.jessicadiamond.mixcraft.components.ModComponents;
 import net.jessicadiamond.mixcraft.item.custom.AbstractAlcohol;
 import net.jessicadiamond.mixcraft.item.custom.MolotovItem;
 import net.minecraft.item.Item;
@@ -22,11 +25,25 @@ public class ModItems {
 
     public static final Item MOLOTOV = registerItem("molotov", new MolotovItem(new Item.Settings().maxCount(16)));
 
-    public static final Item VODKA = registerItem("vodka", new AbstractAlcohol(
-            new Item.Settings().food(ModFoodComponents.ALCOHOL).maxCount(1),
-            new AbstractAlcohol.Settings()));
-    public static final Item WHISKY = registerItem("whisky", new Item(new Item.Settings().food(ModFoodComponents.ALCOHOL)));
-    public static final Item BEER = registerItem("beer", new Item(new Item.Settings().food(ModFoodComponents.ALCOHOL)));
+    public static final Item VODKA = registerItem("vodka", new AbstractAlcohol( new Item.Settings().maxCount(1)
+                    .component(ModComponents.ALCOHOL_COMPONENT,
+                            new AlcoholComponent(1000, 1.0f, 40f))
+            .food(ModFoodComponents.ALCOHOL)
+    ));
+
+
+    public static final Item WHISKY = registerItem("whisky", new AbstractAlcohol(new Item.Settings().maxCount(1)
+            .component(ModComponents.ALCOHOL_COMPONENT,
+                    new AlcoholComponent(1000, 1.0f, 40f))
+            .food(ModFoodComponents.ALCOHOL)
+    ));
+
+
+    public static final Item BEER = registerItem("beer", new AbstractAlcohol(new Item.Settings().maxCount(1)
+            .component(ModComponents.ALCOHOL_COMPONENT,
+                    new AlcoholComponent(355, 0.11f, 2.5f))
+            .food(ModFoodComponents.ALCOHOL)
+    ));
 
 
 

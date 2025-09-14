@@ -10,6 +10,7 @@ import net.jessicadiamond.mixcraft.entity.client.MolotovProjectileModel;
 import net.jessicadiamond.mixcraft.entity.client.MolotovProjectileRenderer;
 import net.jessicadiamond.mixcraft.screen.ModScreenHandlers;
 import net.jessicadiamond.mixcraft.screen.custom.AlcoholDisplayScreen;
+import net.jessicadiamond.mixcraft.screen.custom.CocktailBlockScreen;
 import net.jessicadiamond.mixcraft.screen.custom.FermentationTableScreen;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
@@ -27,5 +28,6 @@ public class MixCraftClient implements ClientModInitializer {
 
         HandledScreens.register(ModScreenHandlers.ALCOHOL_DISPLAY_SCREEN_HANDLER, AlcoholDisplayScreen :: new);
         HandledScreens.register(ModScreenHandlers.FERMENTATION_TABLE_SCREEN_HANDLER, FermentationTableScreen :: new);
+        HandledScreens.register(ModScreenHandlers.COCKTAIL_BLOCK_SCREEN_HANDLER, CocktailBlockScreen:: new);
 	}
 }
