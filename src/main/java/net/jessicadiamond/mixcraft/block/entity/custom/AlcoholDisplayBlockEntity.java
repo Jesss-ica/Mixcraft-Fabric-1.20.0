@@ -59,8 +59,6 @@ public class AlcoholDisplayBlockEntity extends BlockEntity implements Implemente
         }
     }
 
-
-
     public float getRenderingRotation() {
         rotation += 0.5f;
         if(rotation >= 360) {

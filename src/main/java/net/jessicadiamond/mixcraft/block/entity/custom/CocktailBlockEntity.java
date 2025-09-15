@@ -1,8 +1,11 @@
 package net.jessicadiamond.mixcraft.block.entity.custom;
 
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
+import net.jessicadiamond.mixcraft.MixCraft;
 import net.jessicadiamond.mixcraft.block.entity.ImplementedInventory;
 import net.jessicadiamond.mixcraft.block.entity.ModBlockEntities;
+import net.jessicadiamond.mixcraft.components.AlcoholComponent;
+import net.jessicadiamond.mixcraft.item.ModItems;
 import net.jessicadiamond.mixcraft.screen.custom.AlcoholDisplayScreenHandler;
 import net.jessicadiamond.mixcraft.screen.custom.CocktailBlockScreenHandler;
 import net.minecraft.block.BlockState;
@@ -11,6 +14,7 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.listener.ClientPlayPacketListener;
@@ -24,6 +28,9 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CocktailBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory<BlockPos>, ImplementedInventory {
 
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(2, ItemStack.EMPTY);
@@ -33,9 +40,39 @@ public class CocktailBlockEntity extends BlockEntity implements ExtendedScreenHa
     public int MAX_TANK_SIZE = 250;
     public int CURRENT_FILL = 0;
 
+    public ArrayList<TankComponent> tankEntries;
+
+
     public CocktailBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.COCKTAIL_BLOCK_BE, pos, state);
+        this.tankEntries =  new ArrayList<>();
     }
+
+    public class TankComponent{
+        public Item alcohol;
+        public int amount;
+
+        public void setAlcoholType(Item itm){
+            this.alcohol = itm;
+        }
+
+        public void setAmount(int amount){
+            this.amount = amount;
+        }
+    }
+
+    public void addToTank(Item item, int amount){
+        this.tankEntries.add(getTankEntry(item,amount));
+        MixCraft.LOGGER.info("Added to shaker" + tankEntries.getLast().alcohol.toString());
+    }
+
+    public TankComponent getTankEntry(Item itm, int amount){
+        TankComponent tankEntry = new TankComponent();
+        tankEntry.setAlcoholType(itm);
+        tankEntry.setAmount(amount);
+        return tankEntry;
+    }
+
 
     public void increaseCurrentFill(int amount){ this.CURRENT_FILL = this.CURRENT_FILL + amount;}
 

@@ -10,12 +10,14 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.screen.slot.Slot;
+import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import org.jetbrains.annotations.Nullable;
 
@@ -40,9 +42,30 @@ public class CocktailBlockScreenHandler extends ScreenHandler {
     }
 
     @Override
-    public ItemStack quickMove(PlayerEntity player, int slot) {
-        return null;
+    public ItemStack quickMove(PlayerEntity player, int invSlot) {
+        ItemStack newStack = ItemStack.EMPTY;
+        Slot slot = this.slots.get(invSlot);
+        if (slot != null && slot.hasStack()) {
+            ItemStack originalStack = slot.getStack();
+            newStack = originalStack.copy();
+            if (invSlot < this.inventory.size()) {
+                if (!this.insertItem(originalStack, this.inventory.size(), this.slots.size(), true)) {
+                    return ItemStack.EMPTY;
+                }
+            } else if (!this.insertItem(originalStack, 0, this.inventory.size(), false)) {
+                return ItemStack.EMPTY;
+            }
+
+            if (originalStack.isEmpty()) {
+                slot.setStack(ItemStack.EMPTY);
+            } else {
+                slot.markDirty();
+            }
+        }
+        return newStack;
     }
+
+    public int getTankSize(){ return blockEntity.tankEntries.size(); }
 
 
     /// =======
@@ -53,13 +76,18 @@ public class CocktailBlockScreenHandler extends ScreenHandler {
         if(tankToOverflow(amount)){
             ItemStack stack = this.blockEntity.getStack(0);
             AlcoholComponent alcoholComponent = stack.get(ModComponents.ALCOHOL_COMPONENT);
-
             if(alcoholComponent != null && wontDrainNegative(amount, alcoholComponent)){
-                stack.set(ModComponents.ALCOHOL_COMPONENT, new AlcoholComponent(alcoholComponent.millilitres() - amount, alcoholComponent.unitsPerShot(), alcoholComponent.ABV()));
+                stack.set(ModComponents.ALCOHOL_COMPONENT, new AlcoholComponent(
+                        alcoholComponent.millilitres() - amount,
+                        alcoholComponent.unitsPerShot(),
+                        alcoholComponent.ABV(),
+                        alcoholComponent.color()));
                 blockEntity.increaseCurrentFill(amount);
+                blockEntity.addToTank(stack.getItem(), amount);
             }
         }
     }
+
 
     public int getScaledTankFill(){
         int currentFill = blockEntity.getCurrentFill();
@@ -79,10 +107,12 @@ public class CocktailBlockScreenHandler extends ScreenHandler {
     }
 
 
-
     /// ====
     ///  End of tank shananigans
     /// ====
+
+
+
 
     @Override
     public boolean canUse(PlayerEntity player) {

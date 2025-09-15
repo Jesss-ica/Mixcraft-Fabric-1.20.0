@@ -2,6 +2,7 @@ package net.jessicadiamond.mixcraft.screen.custom;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.jessicadiamond.mixcraft.MixCraft;
+import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
@@ -50,8 +51,12 @@ public class CocktailBlockScreen extends HandledScreen<CocktailBlockScreenHandle
     }
 
     private void renderCocktailTank(DrawContext context, int x, int y) {
+        for(int i = 0; i < handler.getTankSize(); i++){
+            context.setShaderColor(/* Create function/class to get RGB values from switch */150.0F, 1.0F, 1.0F, 1.0F);
             context.drawTexture(COCKTAIL_TANK, x + 80, y + 14, 0, 0,
                     33, handler.getScaledTankFill(), 33, 56);
+        }
+
     }
 
     protected void addPourButtons(){
