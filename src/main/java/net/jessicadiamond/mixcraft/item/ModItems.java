@@ -8,6 +8,8 @@ import net.jessicadiamond.mixcraft.components.AlcoholComponent;
 import net.jessicadiamond.mixcraft.components.ModComponents;
 import net.jessicadiamond.mixcraft.item.custom.AbstractAlcohol;
 import net.jessicadiamond.mixcraft.item.custom.MolotovItem;
+import net.minecraft.component.type.FoodComponent;
+import net.minecraft.component.type.FoodComponents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.item.Items;
@@ -27,22 +29,28 @@ public class ModItems {
 
     public static final Item VODKA = registerItem("vodka", new AbstractAlcohol( new Item.Settings().maxCount(1)
                     .component(ModComponents.ALCOHOL_COMPONENT,
-                            new AlcoholComponent(1000, 1.0f, 40f))
+                            new AlcoholComponent(1000, 1.0f, 40f, "WHITE"))
             .food(ModFoodComponents.ALCOHOL)
     ));
 
 
     public static final Item WHISKY = registerItem("whisky", new AbstractAlcohol(new Item.Settings().maxCount(1)
             .component(ModComponents.ALCOHOL_COMPONENT,
-                    new AlcoholComponent(1000, 1.0f, 40f))
+                    new AlcoholComponent(1000, 1.0f, 40f, "RED"))
             .food(ModFoodComponents.ALCOHOL)
     ));
 
 
     public static final Item BEER = registerItem("beer", new AbstractAlcohol(new Item.Settings().maxCount(1)
             .component(ModComponents.ALCOHOL_COMPONENT,
-                    new AlcoholComponent(355, 0.11f, 2.5f))
+                    new AlcoholComponent(355, 0.11f, 2.5f, "YELLOW"))
             .food(ModFoodComponents.ALCOHOL)
+    ));
+
+    public static final Item COLA = registerItem("cola", new AbstractAlcohol(new Item.Settings().maxCount(1)
+            .component(ModComponents.ALCOHOL_COMPONENT,
+                    new AlcoholComponent(500, 0f, 0f, "BROWN"))
+            .food(FoodComponents.HONEY_BOTTLE)
     ));
 
 

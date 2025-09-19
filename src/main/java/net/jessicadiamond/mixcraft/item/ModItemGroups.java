@@ -27,6 +27,7 @@ public class ModItemGroups {
                         entries.add(ModItems.MOLOTOV);
                         entries.add(ModItems.WHISKY);
                         entries.add(ModItems.BEER);
+                        entries.add(ModItems.COLA);
 
 
                     }).build());

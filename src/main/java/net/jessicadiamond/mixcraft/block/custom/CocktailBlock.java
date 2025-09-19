@@ -67,4 +67,5 @@ public class CocktailBlock extends BlockWithEntity implements BlockEntityProvide
         }
         return ItemActionResult.SUCCESS;
     }
+
 }

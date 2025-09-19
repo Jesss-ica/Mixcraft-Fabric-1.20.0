@@ -48,7 +48,7 @@ public class AbstractAlcohol extends Item {
                 1.0F + (world.random.nextFloat() - world.random.nextFloat()) * 0.4F
         );
         int bottle_size = stack.get(ModComponents.ALCOHOL_COMPONENT).millilitres();
-        stack.set(ModComponents.ALCOHOL_COMPONENT, new AlcoholComponent(bottle_size - 25, 1f, 40f));
+        stack.set(ModComponents.ALCOHOL_COMPONENT, new AlcoholComponent(bottle_size - 25, 1f, 40f, "WHITE"));
         user.emitGameEvent(GameEvent.DRINK);
         return stack;
     }

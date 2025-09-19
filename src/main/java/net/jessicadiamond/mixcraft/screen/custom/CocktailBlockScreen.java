@@ -1,7 +1,10 @@
 package net.jessicadiamond.mixcraft.screen.custom;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.jessicadiamond.mixcraft.MixCraft;
+import net.jessicadiamond.mixcraft.components.ModComponents;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
@@ -12,6 +15,8 @@ import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
+
+@Environment(EnvType.CLIENT)
 public class CocktailBlockScreen extends HandledScreen<CocktailBlockScreenHandler> {
 
     private static final Identifier GUI_TEXTURE =
@@ -20,7 +25,6 @@ public class CocktailBlockScreen extends HandledScreen<CocktailBlockScreenHandle
             Identifier.of(MixCraft.MOD_ID, "textures/gui/cocktail_block/cocktail_block_tank.png");
 
     private boolean hasRendered;
-    //private CocktailBlockScreenHandler handler;
 
     public CocktailBlockScreen(CocktailBlockScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
@@ -38,7 +42,7 @@ public class CocktailBlockScreen extends HandledScreen<CocktailBlockScreenHandle
         context.drawTexture(GUI_TEXTURE, x, y, 0, 0, backgroundWidth, backgroundHeight);
 
         if(!hasRendered){
-            addPourButtons();
+            renderButtons();
         }
 
         renderCocktailTank(context, x, y);
@@ -51,22 +55,57 @@ public class CocktailBlockScreen extends HandledScreen<CocktailBlockScreenHandle
     }
 
     private void renderCocktailTank(DrawContext context, int x, int y) {
+        int tankX = x + 80;
+        int tankY = y + 14;
+        int nextTankPos = 0;
         for(int i = 0; i < handler.getTankSize(); i++){
-            context.setShaderColor(/* Create function/class to get RGB values from switch */150.0F, 1.0F, 1.0F, 1.0F);
-            context.drawTexture(COCKTAIL_TANK, x + 80, y + 14, 0, 0,
-                    33, handler.getScaledTankFill(), 33, 56);
+            int scaledTankFill = handler.getScaledTypeFill(i);
+            float[] fillColor = handler.getTankEntry(i).color.getRGBColorComponents(null);
+            context.setShaderColor(fillColor[0],fillColor[1],fillColor[2], 1.0F);
+            context.drawTexture(COCKTAIL_TANK, tankX, tankY + nextTankPos , 0, 0,
+                    33, scaledTankFill, 33, 56);
+            nextTankPos = nextTankPos + scaledTankFill;
         }
 
     }
+
+    private int getFillAmount(int i){
+        return handler.blockEntity.tankEntries.get(i).amount;
+    }
+
+    private void renderButtons(){
+        addPourButtons();
+        addClearButton();
+        addShakeButton();
+        hasRendered = true;
+    }
+
+    protected void addClearButton(){
+        this.addDrawableChild(ButtonWidget.builder(Text.literal("X"),
+                        button -> this.sendButtonPressPacket(5))
+                .dimensions(x + 116, y + 53, 18, 18).build());
+    }
+
+    protected void addShakeButton(){
+        this.addDrawableChild(ButtonWidget.builder(Text.literal("Shake"),
+                button -> this.sendButtonPressPacket(4))
+                .dimensions(x + 116, y + 33, 18, 18).build());
+    }
+
 
     protected void addPourButtons(){
         int initialButtonPosX = x + 41;
         int initialButtonPosY = y + 13;
         for(int i = 0; i < 3; i++){
             int finalI =  i + 1;
-            this.addDrawableChild(ButtonWidget.builder(Text.literal(25 * finalI +"ml"), button -> handler.addToTank(25 * finalI)).dimensions(initialButtonPosX, initialButtonPosY + (i * 20), 36, 18).build());
+            this.addDrawableChild(ButtonWidget.builder(Text.literal(25 * finalI +"ml"),
+                    button -> this.sendButtonPressPacket(finalI))
+                    .dimensions(initialButtonPosX, initialButtonPosY + (i * 20), 36, 18).build());
         }
-        hasRendered = true;
+    }
+
+    private void sendButtonPressPacket(int id) {
+        this.client.interactionManager.clickButton(this.handler.syncId, id);
     }
 
 
